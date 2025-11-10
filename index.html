@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="dist/apple-touch-icon.png"/>
     <link rel="icon" type="image/png" sizes="32x32" href="dist/favicon-32x32.png"/>
     <link rel="icon" type="image/png" sizes="16x16" href="dist/favicon-16x16.png"/>
-    <link rel="manifest" href="manifest.json"/>
+    <link rel="manifest" href="dist/site.webmanifest"/>
     <link rel="mask-icon" href="dist/safari-pinned-tab.svg" color="#000000"/>
     <meta name="apple-mobile-web-app-title" content="Bitburner"/>
     <meta name="application-name" content="Bitburner"/>
@@ -37,29 +37,8 @@
         display: none; /* for Chrome, Safari, and Opera */
       }
     </style>
-    <link rel="icon" href="dist/favicon.ico">
-    <script defer src="dist/vendor.bundle.js"></script>
-    <script defer src="dist/main.bundle.js"></script>
-      
-  </head>
+  <link rel="icon" href="dist/favicon.ico"><script defer src="dist/vendor.bundle.js"></script><script defer src="dist/main.bundle.js"></script></head>
   <body>
-    <script>
-if ("serviceWorker" in navigator) {
-  // Register a service worker hosted at the root of the
-  // site using the default scope.
-  navigator.serviceWorker.register("/sw.js").then(
-    (registration) => {
-      console.log("Service worker registration succeeded:", registration);
-    },
-    (error) => {
-      console.error(`Service worker registration failed: ${error}`);
-    },
-  );
-} else {
-  console.error("Service workers are not supported.");
-}
-
-    </script>
     <div id="root" style="display:flex"></div>
   </body>
 </html>
