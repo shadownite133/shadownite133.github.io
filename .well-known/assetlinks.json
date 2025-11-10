@@ -1,7 +1,8 @@
 [{
- "relation": ["delegate_permission/common.handle_all_urls"],
- "target": {
-   "namespace": "Bitburner",
-   "package_name": "io.github.shadownite133.bitburner"
- }
-}]
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.shadownite133.bitburner",
+        "sha256_cert_fingerprints": ["F0:9F:AB:63:F0:42:F2:02:B9:80:11:C8:84:E3:9E:33:86:22:AE:F4:8A:FC:75:88:79:DE:DD:3C:5D:43:45:B6"]
+      }
+    }]
