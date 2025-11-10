@@ -1,33 +1,18 @@
-const CACHE_NAME = 'bitburner-android';
+// This is the "Offline copy of pages" service worker
 
-// Add whichever assets you want to pre-cache here:
-const PRECACHE_ASSETS = [
-  '/dist/*/*/*/*/*/*',
-  '/index.html',
-  '/manifest.json',
-  '/.well-known/*',
-  '/sw.js'
-]
+const CACHE = "bitburner-android-offline";
 
-// Listener for the install event - pre-caches our assets list on service worker install.
-self.addEventListener('install', event => {
-    event.waitUntil((async () => {
-        const cache = await caches.open(CACHE_NAME);
-        cache.addAll(PRECACHE_ASSETS);
-    })());
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
 
-self.addEventListener('activate', event => {
-  event.waitUntil(self.clients.claim());
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith((async () => {
-      const cache = await caches.open(CACHE_NAME);
-      const cachedResponse = await cache.match(event.request);
-      if (cachedResponse) {
-          return cachedResponse;
-      } 
-      return fetch(event.request);
-  })());
-});
+workbox.routing.registerRoute(
+  new RegExp('/*'),
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: CACHE
+  })
+);
